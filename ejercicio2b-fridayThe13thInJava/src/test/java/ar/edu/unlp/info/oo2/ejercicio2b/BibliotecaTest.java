@@ -2,21 +2,34 @@ package ar.edu.unlp.info.oo2.ejercicio2b;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BibliotecaTest {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+class BibliotecaTest {
+	
+	ObjectMapper objectMapper = new ObjectMapper();
+	
 	Biblioteca biblioteca;
-	Socio socio1, socio2;
+	JSONArray json;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		this.biblioteca = new Biblioteca();
-		this.socio1 = new Socio("Arya Stark", "needle@stark.com", "5234-5");
-		this.socio2 = new Socio("Tyron Lannister", "tyron@thelannisters.com", "2345-2");
-		this.biblioteca.agregarSocio(socio1);
-		this.biblioteca.agregarSocio(socio2);
+		biblioteca = new Biblioteca();
+		biblioteca.agregarSocio(new Socio("Arya Stark", "needle@stark.com", "5234-5"));
+		biblioteca.agregarSocio(new Socio("Tyron Lannister", "tyron@thelannisters.com",  "2345-2"));
+		biblioteca.setExporter(new VoorheesExporter());
 	}
 
 	@Test
@@ -27,13 +40,22 @@ class BibliotecaTest {
 	}
 
 	@Test
-	void testExportarSocios() {
-		assertEquals(this.biblioteca.exportarSocios(),
-				"[\r\n" + "	{\r\n" + "		\"nombre\": \"Arya Stark\",\r\n"
-						+ "		\"email\": \"needle@stark.com\",\r\n" + "		\"legajo\": \"5234-5\"\r\n" + "	},\r\n"
-						+ "	{\r\n" + "		\"nombre\": \"Tyron Lannister\",\r\n"
-						+ "		\"email\": \"tyron@thelannisters.com\",\r\n" + "		\"legajo\": \"2345-2\"\r\n"
-						+ "	}\r\n" + "]");
+	void testExportarSocios() throws ParseException {
+	    String textoSalida = "[\r\n"
+	            + "    {\r\n"
+	            + "        \"nombre\": \"Arya Stark\",\r\n"
+	            + "        \"email\": \"needle@stark.com\",\r\n"
+	            + "        \"legajo\": \"5234-5\"\r\n"
+	            + "    },\r\n"
+	            + "    {\r\n"
+	            + "        \"nombre\": \"Tyron Lannister\",\r\n"
+	            + "        \"email\": \"tyron@thelannisters.com\",\r\n"
+	            + "        \"legajo\": \"2345-2\"\r\n"
+	            + "    }\r\n"
+	            + "]";
+	    JSONParser parser = new JSONParser();
+	    assertEquals(parser.parse(textoSalida), parser.parse(biblioteca.exportarSocios()));
 	}
 
 }
+	

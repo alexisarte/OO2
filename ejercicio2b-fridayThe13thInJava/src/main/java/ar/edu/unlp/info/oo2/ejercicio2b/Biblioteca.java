@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
+	
 	private List<Socio> socios;
 	private VoorheesExporter exporter;
 
@@ -31,4 +32,5 @@ public class Biblioteca {
 	public void setExporter(VoorheesExporter exporter) {
 		this.exporter = exporter;
 	}
+	
 }

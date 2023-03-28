@@ -4,7 +4,7 @@ public class Prueba {
 
 	public static void main(String[] args) {
 		Biblioteca biblioteca = new Biblioteca();
-		VoorheesExporter exporter = new JSONSimpleAdapter();
+		VoorheesExporter exporter = new VoorheesExporter();
 		
 		biblioteca.setExporter(exporter);
 		
