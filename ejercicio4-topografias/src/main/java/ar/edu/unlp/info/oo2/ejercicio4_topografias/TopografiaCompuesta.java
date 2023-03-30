@@ -1,24 +1,40 @@
 package ar.edu.unlp.info.oo2.ejercicio4_topografias;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class TopografiaCompuesta implements ComponenteTopografia {
+public class TopografiaCompuesta implements Topografia {
 
-	private List<ComponenteTopografia> componentes = new ArrayList<>();;
+	private List<Topografia> componentes = new ArrayList<>();;
 
-	public TopografiaCompuesta(List<ComponenteTopografia> componentes) {
-		this.componentes = componentes;
+	public TopografiaCompuesta(Topografia c1, Topografia c2, Topografia c3, Topografia c4) {
+		this.componentes = Arrays.asList(c1, c2, c3, c4);
 	}
 
 	@Override
-	public int proporcionDeAgua() {
-		return this.componentes.stream().mapToInt(ComponenteTopografia::proporcionDeAgua).sum() / 4;
+	public double proporcionDeAgua() {
+		return this.componentes.stream().mapToDouble(Topografia::proporcionDeAgua).sum() / 4;
 	}
 
 	@Override
-	public int proporcionDeTierra() {
-		return this.componentes.stream().mapToInt(ComponenteTopografia::proporcionDeTierra).sum() / 4;
+	public double proporcionDeTierra() {
+		return this.componentes.stream().mapToDouble(Topografia::proporcionDeTierra).sum() / 4;
+	}
+
+	@Override
+	public boolean esIgualACompuesta(Topografia otraTopografia) {
+		return this.componentes.equals(((TopografiaCompuesta) otraTopografia).getComponentes());
+	}
+	
+	@Override
+	public boolean equals(Object otraTopografia) {
+		return ((Topografia) otraTopografia).esIgualACompuesta(this);
+	}
+
+	public List<Topografia> getComponentes() {
+		return Collections.unmodifiableList(this.componentes);
 	}
 
 }
