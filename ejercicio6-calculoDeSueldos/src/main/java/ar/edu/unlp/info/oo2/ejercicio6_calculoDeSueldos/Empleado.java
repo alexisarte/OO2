@@ -11,10 +11,11 @@ public abstract class Empleado {
 	}
 	
 	public abstract double sueldoBasico();
+	
 	public abstract double adicionales();
 	
 	public double descuentos() {
-		return (0.13 * this.sueldoBasico()	) + (0.5 * this.adicionales()); 
+		return (0.13 * this.sueldoBasico()) + (0.5 * this.adicionales()); 
 	}
 	
 	public double sueldo() {

@@ -7,10 +7,11 @@ public class EmpleadoDePlanta extends Empleado {
 	private int antiguedad;
 
 	public EmpleadoDePlanta(String nombre, String apellido, boolean estaCasado, int cantidadDeHijos,
-			int aniosDeAntiguedad) {
+			int antiguedad) {
 		super(nombre, apellido);
 		this.estaCasado = estaCasado;
 		this.cantidadDeHijos = cantidadDeHijos;
+		this.antiguedad = antiguedad;
 	}
 
 	@Override
