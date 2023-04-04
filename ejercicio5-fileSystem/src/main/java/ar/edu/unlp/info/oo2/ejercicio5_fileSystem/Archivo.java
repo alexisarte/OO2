@@ -19,11 +19,11 @@ public class Archivo {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public LocalDate getFecha() {
-		return fecha;
+		return this.fecha;
 	}
 
 	public int getTamano() {

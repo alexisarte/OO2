@@ -21,7 +21,7 @@ public class Directorio extends Archivo {
 	 * Retorna el espacio total ocupado, incluyendo su contenido.
 	 */
 	public int tamanoTotalOcupado() {
-		return getTamano();
+		return this.componentes.stream().mapToInt(Archivo::getTamano).sum() + getTamano();
 	}
 
 	/**
@@ -43,10 +43,6 @@ public class Directorio extends Archivo {
 		}
 		return this.componentes.stream().max((Archivo c1, Archivo c2) -> c1.getFecha().compareTo(c2.getFecha()))
 				.orElse(null);
-	}
-
-	public int getTamano() {
-		return this.componentes.stream().mapToInt(Archivo::getTamano).sum() + TAMANO;
 	}
 	
 	public void agregarArchivo(Archivo archivo) {
