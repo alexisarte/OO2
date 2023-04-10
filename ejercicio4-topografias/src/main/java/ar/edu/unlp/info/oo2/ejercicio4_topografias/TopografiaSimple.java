@@ -1,6 +1,6 @@
 package ar.edu.unlp.info.oo2.ejercicio4_topografias;
 
-public abstract class TopografiaSimple implements Topografia {
+public abstract class TopografiaSimple extends Topografia {
 
 	@Override
 	abstract public double proporcionDeAgua();
@@ -14,8 +14,8 @@ public abstract class TopografiaSimple implements Topografia {
 	}
 	
 	@Override
-	public boolean equals(Object otraTopografia) {
-		return this.proporcionDeAgua() == ((TopografiaSimple) otraTopografia).proporcionDeAgua();
+	public boolean equals(Topografia otraTopografia) {
+		return this.proporcionDeAgua() == otraTopografia.proporcionDeAgua();
 	}
 	
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class TopografiaCompuesta implements Topografia {
+public class TopografiaCompuesta extends Topografia {
 
 	private List<Topografia> componentes = new ArrayList<>();;
 
@@ -29,8 +29,8 @@ public class TopografiaCompuesta implements Topografia {
 	}
 	
 	@Override
-	public boolean equals(Object otraTopografia) {
-		return ((Topografia) otraTopografia).esIgualACompuesta(this);
+	public boolean equals(Topografia otraTopografia) {
+		return otraTopografia.esIgualACompuesta(this);
 	}
 
 	public List<Topografia> getComponentes() {

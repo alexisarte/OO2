@@ -28,17 +28,10 @@ class TopografiaCompuestaTest {
 	}
 
 	@Test
-	void testEsIgualACompuesta() {
-		assertTrue(mixta.esIgualACompuesta(mixta));
-		assertFalse(mixta2.esIgualACompuesta(mixta));
-		//assertFalse(mixta.esIgualACompuesta(mixta2));
-	}
-
-	@Test
 	void testEquals() {
 		assertTrue(mixta.equals(mixta));
-		//assertFalse(mixta2.equals(mixta));
-		//assertFalse(mixta.esIgualACompuesta(mixta2));
+		assertFalse(mixta2.equals(mixta));
+		assertFalse(mixta.equals(mixta2));
 	}
 
 }

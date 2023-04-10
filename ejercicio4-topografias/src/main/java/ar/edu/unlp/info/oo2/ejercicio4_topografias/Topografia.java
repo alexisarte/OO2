@@ -1,13 +1,21 @@
 package ar.edu.unlp.info.oo2.ejercicio4_topografias;
 
-public interface Topografia {
+public abstract class Topografia {
 	
-	double proporcionDeAgua();
+	abstract double proporcionDeAgua();
 	
-	double proporcionDeTierra();
+	abstract double proporcionDeTierra();
 	
-	boolean esIgualACompuesta(Topografia otraTopografia);
+	abstract boolean esIgualACompuesta(Topografia otraTopografia);
 	
-	boolean equals(Object otraTopografia);
+	@Override
+	public boolean equals(Object otraTopografia) {
+		if (otraTopografia instanceof Topografia) {
+			return this.equals((Topografia) otraTopografia);
+		}
+		return false;
+	}
+	
+	public abstract boolean equals(Topografia t);
 
 }
