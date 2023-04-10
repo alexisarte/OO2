@@ -2,7 +2,10 @@ package ar.edu.unlp.info.oo2.ejercicio5_fileSystem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Directorio extends Archivo {
 
@@ -20,8 +23,9 @@ public class Directorio extends Archivo {
 	/**
 	 * Retorna el espacio total ocupado, incluyendo su contenido.
 	 */
+	@Override
 	public int tamanoTotalOcupado() {
-		return this.componentes.stream().mapToInt(Archivo::getTamano).sum() + getTamano();
+		return this.componentes.stream().mapToInt(a -> a.tamanoTotalOcupado()).sum() + getTamano();
 	}
 
 	/**
@@ -30,7 +34,10 @@ public class Directorio extends Archivo {
 	 */
 	public Archivo archivoMasGrande() {
 		return this.componentes.stream()
-				.max((Archivo c1, Archivo c2) -> Integer.compare(c1.getTamano(), c2.getTamano())).get();
+	            .map(a -> a.archivoMasGrande())
+	            .filter(Objects::nonNull)
+	            .max(Comparator.comparing(Archivo::getTamano))
+	            .orElse(null);
 	}
 
 	/**
@@ -41,11 +48,11 @@ public class Directorio extends Archivo {
 		if (this.componentes.isEmpty()) {
 			return null;
 		}
-		return this.componentes.stream().max((Archivo c1, Archivo c2) -> c1.getFecha().compareTo(c2.getFecha()))
+		return this.componentes.stream().map(a -> a.archivoMasNuevo()).max((Archivo c1, Archivo c2) -> c1.getFecha().compareTo(c2.getFecha()))
 				.orElse(null);
 	}
 	
-	public void agregarArchivo(Archivo archivo) {
+	public void agregar(Archivo archivo) {
 		this.componentes.add(archivo);
 	}
 

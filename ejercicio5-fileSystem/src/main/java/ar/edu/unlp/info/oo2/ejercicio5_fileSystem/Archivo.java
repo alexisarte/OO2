@@ -29,5 +29,17 @@ public class Archivo {
 	public int getTamano() {
 		return this.tamano;
 	}
+	
+	public int tamanoTotalOcupado() {
+		return this.getTamano();
+	}
+	
+	public Archivo archivoMasGrande() {
+		return this;
+	}
+	
+	public Archivo archivoMasNuevo() {
+		return this;
+	}
 
 }
