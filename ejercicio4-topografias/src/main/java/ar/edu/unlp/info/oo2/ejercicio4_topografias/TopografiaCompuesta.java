@@ -24,15 +24,15 @@ public class TopografiaCompuesta extends Topografia {
 	}
 
 	@Override
+	public boolean esIgualA(Topografia otraTopografia) {
+		return otraTopografia.esIgualACompuesta(this);
+	}
+
+	@Override
 	public boolean esIgualACompuesta(Topografia otraTopografia) {
 		return this.componentes.equals(((TopografiaCompuesta) otraTopografia).getComponentes());
 	}
 	
-	@Override
-	public boolean equals(Topografia otraTopografia) {
-		return otraTopografia.esIgualACompuesta(this);
-	}
-
 	public List<Topografia> getComponentes() {
 		return Collections.unmodifiableList(this.componentes);
 	}

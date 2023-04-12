@@ -6,16 +6,16 @@ public abstract class Topografia {
 	
 	abstract double proporcionDeTierra();
 	
+	abstract boolean esIgualA(Topografia otraTopografia);
+
 	abstract boolean esIgualACompuesta(Topografia otraTopografia);
 	
 	@Override
 	public boolean equals(Object otraTopografia) {
 		if (otraTopografia instanceof Topografia) {
-			return this.equals((Topografia) otraTopografia);
+			return this.esIgualA((Topografia) otraTopografia);
 		}
 		return false;
 	}
 	
-	public abstract boolean equals(Topografia t);
-
 }

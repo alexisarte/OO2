@@ -15,11 +15,17 @@ class TopografiaSimpleTest {
 		agua2 = new Agua();
 		tierra = new Tierra();
 	}
+	
+	@Test
+	void testProporcionDeAgua() {
+		assertEquals(1, agua.proporcionDeAgua());
+		assertEquals(0, tierra.proporcionDeAgua());
+	}
 
 	@Test
-	void testEsIgualACompuesta() {
-		assertFalse(agua.esIgualACompuesta(tierra));
-		assertFalse(tierra.esIgualACompuesta(agua));
+	void testProporcionDeTierra() {
+		assertEquals(0, agua.proporcionDeTierra());
+		assertEquals(1, tierra.proporcionDeTierra());
 	}
 
 	@Test
