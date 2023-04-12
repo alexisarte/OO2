@@ -1,23 +1,19 @@
 package ar.edu.unlp.info.oo2.ejercicio7_toDoItem;
 
-import java.time.Duration;
-
 public class Paused extends ToDoItemState {
 
-	@Override
-	public void togglePause(ToDoItem context) {
-		context.setState(new InProgress());
+	public Paused(ToDoItem context) {
+		super(context);
 	}
 
 	@Override
-	public void finish(ToDoItem context) {
-		context.setState(new Finished());
+	public void togglePause() {
+		this.context.setState(new InProgress(this.context));
 	}
 
 	@Override
-	public Duration workedTime() {
-		// TODO Auto-generated method stub
-		return null;
+	public void finish() {
+		this.context.setState(new Finished(this.context));
 	}
 
 }

@@ -1,24 +1,22 @@
 package ar.edu.unlp.info.oo2.ejercicio7_toDoItem;
 
-import java.time.Duration;
+import java.time.Instant;
 
 public class InProgress extends ToDoItemState {
 	
+	public InProgress(ToDoItem context) {
+		super(context);
+		this.context.setStartTime(Instant.now());
+	}
+	
 	@Override
-	public void togglePause(ToDoItem context) {
-		context.setState(new Paused());
+	public void togglePause() {
+		this.context.setState(new Paused(this.context));
 	}
 
 	@Override
-	public void finish(ToDoItem context) {
-		context.setState(new Finished());
-		
-	}
-
-	@Override
-	public Duration workedTime() {
-		// TODO Auto-generated method stub
-		return null;
+	public void finish() {
+		this.context.setState(new Finished(this.context));
 	}
 	
 }

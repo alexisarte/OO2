@@ -5,25 +5,27 @@ import java.time.Instant;
 
 public abstract class ToDoItemState {
 	
-	Instant inicio;
-
+	protected ToDoItem context;
 	
-	public void start(ToDoItem item) {
+	public ToDoItemState(ToDoItem context) {
+		this.context = context;
+	}
+
+	public void start() {
 		
 	}
 
-	public abstract void togglePause(ToDoItem item);
+	public abstract void togglePause();
 
-	public void finish(ToDoItem item) {
+	public void finish() {
 		
 	}
 
-	@Override
 	public Duration workedTime() {
-		return Duration.between(inicio, Instant.now());
+		return Duration.between(this.context.getStartTime(), Instant.now());
 	}
 
-	public void addComment(ToDoItem todo, String comment) {
+	public void addComment(String comment) {
 		
 	}
 	

@@ -8,6 +8,8 @@ import java.util.List;
 public class ToDoItem {
     
     private String name;
+    private Instant startTime;
+	private Instant endTime;
     private ToDoItemState state;
     private List<String> comments;
 
@@ -16,7 +18,7 @@ public class ToDoItem {
     */
     public ToDoItem(String name) {
         this.name = name;
-        this.state = new Pending();
+        this.state = new Pending(this);
         this.comments = new ArrayList<>();
     }
     
@@ -25,7 +27,7 @@ public class ToDoItem {
     * pending, si se encuentra en otro estado, no hace nada)
     */
     public void start() {
-        this.state.start(this);
+        this.state.start();
     }
     
     /**
@@ -34,7 +36,7 @@ public class ToDoItem {
     * informando la causa específica del mismo
     */
     public void togglePause() {
-    	this.state.togglePause(this);
+    	this.state.togglePause();
     }
     
     /**
@@ -43,7 +45,7 @@ public class ToDoItem {
     */
 
     public void finish() {
-    	this.state.finish(this);
+    	this.state.finish();
     }
     
     /**
@@ -53,7 +55,7 @@ public class ToDoItem {
     * genera un error informando la causa específica del mismo.
     */
     public Duration workedTime() {
-        return fechaFin - fechaInicio; -> convertir a duration
+        return this.state.workedTime();
     }
     
     /**
@@ -61,7 +63,7 @@ public class ToDoItem {
     * contrario no hace nada."
     */
     public void addComment(String comment) {
-    	this.state.addComment(this, comment);
+    	this.state.addComment(comment);
     }
     
     public void agregar(String comment) {
@@ -72,7 +74,23 @@ public class ToDoItem {
         return name;
     }
     
-    public void setState(ToDoItemState state) {
+    public Instant getStartTime() {
+		return startTime;
+	}
+    
+	public Instant getEndTime() {
+		return endTime;
+	}
+    
+    public void setStartTime(Instant startTime) {
+		this.startTime = startTime;
+	}
+
+	public void setEndTime(Instant endTime) {
+		this.endTime = endTime;
+	}
+
+	public void setState(ToDoItemState state) {
 		this.state = state;
 	}
     
