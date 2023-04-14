@@ -32,7 +32,7 @@ class DispositivoTest {
 	@Test
 	void testConfigurarCRC() {
 		CRC_Calculator crcCalculator32 = new CRC32_Calculator();
-		this.dispositivo.configurarCRC(new CRC32_Calculator());
+		this.dispositivo.configurarCRC(crcCalculator32);
 		assertEquals(crcCalculator32, this.dispositivo.getCrcCalculator());
 	}
 
