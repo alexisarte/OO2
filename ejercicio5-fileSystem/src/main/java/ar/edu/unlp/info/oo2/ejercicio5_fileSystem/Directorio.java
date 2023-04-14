@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Directorio extends Archivo {
 
@@ -35,7 +33,6 @@ public class Directorio extends Archivo {
 	public Archivo archivoMasGrande() {
 		return this.componentes.stream()
 	            .map(a -> a.archivoMasGrande())
-	            .filter(Objects::nonNull)
 	            .max(Comparator.comparing(Archivo::getTamano))
 	            .orElse(null);
 	}
@@ -45,10 +42,9 @@ public class Directorio extends Archivo {
 	 * filesystem contenido por directorio receptor.
 	 */
 	public Archivo archivoMasNuevo() {
-		if (this.componentes.isEmpty()) {
-			return null;
-		}
-		return this.componentes.stream().map(a -> a.archivoMasNuevo()).max((Archivo c1, Archivo c2) -> c1.getFecha().compareTo(c2.getFecha()))
+		return this.componentes.stream()
+				.map(a -> a.archivoMasNuevo())
+				.max(Comparator.comparing(Archivo::getFecha))
 				.orElse(null);
 	}
 	
