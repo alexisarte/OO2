@@ -1,7 +1,5 @@
 package ar.edu.unlp.info.oo2.ejercicio14_fileManager;
 
-import java.time.LocalDate;
-
 public class ModificateDateDecorator extends FileDecorator {
 
 	public ModificateDateDecorator(FileOO2 file) {
@@ -10,7 +8,7 @@ public class ModificateDateDecorator extends FileDecorator {
 
 	@Override
 	public String prettyPrint() {
-		return this.file.prettyPrint() + LocalDate.now().plusDays(10) + " - " ;
+		return this.file.prettyPrint() + " - " + this.file.getModificateDate();
 	}
 
 }

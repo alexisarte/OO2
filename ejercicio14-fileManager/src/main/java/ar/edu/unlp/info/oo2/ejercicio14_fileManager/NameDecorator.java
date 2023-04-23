@@ -8,7 +8,7 @@ public class NameDecorator extends FileDecorator {
 	
 	@Override
 	public String prettyPrint() {
-		return this.file.prettyPrint() + "Name - ";
+		return this.file.prettyPrint() + this.file.getName();
 	}
 
 }
