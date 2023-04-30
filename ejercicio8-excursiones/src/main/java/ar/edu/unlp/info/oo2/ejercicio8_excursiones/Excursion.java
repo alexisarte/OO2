@@ -14,13 +14,21 @@ public class Excursion {
 	private int cupoMinimo;
 	private int cupoMaximo;
 	private List<Usuario> usuarios;
-	private List<Usuario> usuariosEnEspera;
+	private List<Usuario> listaDeEspera;
 	private ExcursionState state;
 
-	public Excursion() {
+	public Excursion(String nombre, LocalDate fechaInicio, LocalDate fechaFin, String puntoDeEncuentro, double costo,
+			int cupoMinimo, int cupoMaximo) {
+		this.nombre = nombre;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.puntoDeEncuentro = puntoDeEncuentro;
+		this.costo = costo;
+		this.cupoMinimo = cupoMinimo;
+		this.cupoMaximo = cupoMaximo;
 		this.state = new ExcursionProvisoria(this);
 		this.usuarios = new ArrayList<>();
-		this.usuariosEnEspera = new ArrayList<>();
+		this.listaDeEspera = new ArrayList<>();
 	}
 
 	public void inscribir(Usuario unUsuario) {
@@ -47,7 +55,7 @@ public class Excursion {
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
-	
+
 	public void setState(ExcursionState state) {
 		this.state = state;
 	}
@@ -57,7 +65,11 @@ public class Excursion {
 	}
 
 	public void agregarUsuarioAListaEspera(Usuario unUsuario) {
-		this.usuariosEnEspera.add(unUsuario);
+		this.listaDeEspera.add(unUsuario);
 	}
-	
+
+	public List<Usuario> getListaDeEspera() {
+		return listaDeEspera;
+	}
+
 }
