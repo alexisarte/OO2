@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TopografiaCompuesta extends Topografia {
 
-	private List<Topografia> componentes = new ArrayList<>();;
+	private List<Topografia> componentes = new ArrayList<>();
 
 	public TopografiaCompuesta(Topografia c1, Topografia c2, Topografia c3, Topografia c4) {
 		this.componentes = Arrays.asList(c1, c2, c3, c4);
