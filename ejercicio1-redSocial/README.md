@@ -1,1 +1,1 @@
-![](ejercicio1-redSocial\RedSocial-UML.png)
+![](https://github.com/alexisarte/OO2/blob/4bc4e41cc177f2adeea5a1f0208bfa8a253e5fcc/ejercicio1-redSocial/RedSocial-UML.png)
