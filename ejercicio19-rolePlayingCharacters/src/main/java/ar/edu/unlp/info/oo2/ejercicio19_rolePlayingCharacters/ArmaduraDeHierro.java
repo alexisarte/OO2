@@ -4,25 +4,21 @@ public class ArmaduraDeHierro extends Armadura {
 
 	@Override
 	public void recibirAtaqueDeEspada(Espada espada) {
-		// TODO Auto-generated method stub
-		
+		this.personaje.disminuirVida(5);
 	}
 
 	@Override
 	public void recibirAtaqueDeArco(Arco arco) {
-		// TODO Auto-generated method stub
-		
+		this.personaje.disminuirVida(3);
 	}
 
 	@Override
 	public void recibirAtaqueDeBaston(Baston aston) {
-		// TODO Auto-generated method stub
-		
+		this.personaje.disminuirVida(1);
 	}
 
 	@Override
 	public void recibirAtaqueDesconocido(Arma arma) {
-		// TODO Auto-generated method stub
 		
 	}
 
