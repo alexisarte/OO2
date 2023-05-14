@@ -14,6 +14,10 @@ public class Proyecto {
 	private double pagoIntegrante;
 	private ProyectoState state;
 
+	public ProyectoState getState() {
+		return state;
+	}
+
 	public Proyecto(String nombre, LocalDate fechaInicio, LocalDate fechaFin, String objetivo, double cantIntegrantes,
 			double pagoIntegrante) {
 		this.nombre = nombre;
