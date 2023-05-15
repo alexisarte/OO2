@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MamiferoTest {
+	
 	private Mamifero nala;
 	private Mamifero melquiades;
 	private Mamifero mufasa;
@@ -22,14 +23,14 @@ public class MamiferoTest {
 
 	@BeforeEach
 	void setUp() {
-		nala = new Mamifero("Nala");
-		melquiades = new Mamifero("Melquiades");
-		mufasa = new Mamifero("Mufasa");
-		alexa = new Mamifero("Alexa");
-		elsa = new Mamifero("Elsa");
-		scar = new Mamifero("Scar");
-		sarabi = new Mamifero("Sarabi");
-		anonimo = new Mamifero();
+		nala = new RealMamifero("Nala");
+		melquiades = new RealMamifero("Melquiades");
+		mufasa = new RealMamifero("Mufasa");
+		alexa = new RealMamifero("Alexa");
+		elsa = new RealMamifero("Elsa");
+		scar = new RealMamifero("Scar");
+		sarabi = new RealMamifero("Sarabi");
+		anonimo = new RealMamifero();
 
 		alexa.setPadre(mufasa);
 		alexa.setMadre(sarabi);
