@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.oo2.ejercicio3_FacturacionDeLlamadas;
 
 public class Llamada {
+	
 	protected String tipoDeLlamada;
 	private String emisor;
 	private String remitente;
