@@ -1,0 +1,43 @@
+@startuml
+
+title Facturacion de llamadas - Class Diagram
+
+class Persoonal {
+  ~descuentoJur: Real
+  ~descuentoFis: Real
+
+  +agregarTelefono(str: String): boolean
+  +registrarUsuario(data: String, nombre: String, t: String): Persoona
+  +registrarLlamada(q: Persoona, q2: Persoona, d: integer): Llamada  
+  +calcularMontoTotalLlamadas(p: Persoona): Real
+  +cantidadDeUsuarios(): Integer
+  +existeUsuario(p: Persoona): Boolean
+}
+
+class Persoona {    
+  +t: String
+  +nya: String
+  +tel: String
+  +cuit: String
+  +doc: String
+}
+
+class Llamada {
+  #tipoDeLlamada: String 
+  -emisor: String 
+  -remitente: String
+  +dur: Integer 
+  +<<create>>Llamada(s: String, p: String, p2: String, dur: Integer): Llamada
+}
+
+class GuiaTelefonica {
+  +guia: String [*]
+} 
+
+Persoonal --> "0..*" Persoona: personas
+Persoonal --> "0..*" Llamada: llamadas
+Persoonal -> GuiaTelefonica: guiaTelefonica
+Persoona -> "0..*" Llamada: llamadas
+Persoona -> Persoonal: sitema
+
+@enduml
