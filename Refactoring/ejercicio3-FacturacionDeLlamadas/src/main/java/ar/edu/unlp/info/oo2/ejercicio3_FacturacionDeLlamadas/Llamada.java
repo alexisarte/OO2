@@ -10,9 +10,9 @@ public abstract class Llamada {
 
 	}
 
-	public Llamada(String p, String p2, int duracion) {
-		this.emisor = p;
-		this.remitente = p2;
+	public Llamada(String emisor, String remitente, int duracion) {
+		this.emisor = emisor;
+		this.remitente = remitente;
 		this.duracion = duracion;
 	}
 
@@ -20,8 +20,8 @@ public abstract class Llamada {
 		return duracion;
 	}
 
-	public void setEmisor(String q) {
-		emisor = q;
+	public void setEmisor(String emisor) {
+		this.emisor = emisor;
 	}
 
 	public String getRemitente() {

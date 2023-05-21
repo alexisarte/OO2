@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Persoona {
+public abstract class Persona {
 
 	private String nombreYApellido;
 	private String telefono;
-	private Persoonal sistema;
-	private List<Llamada> llamadas;
+	private ServcioTelefonico sistema;
+	private List<Llamada> llamadas = new ArrayList<Llamada>();
 
-	public Persoona(String nombreYApellido, String telefono, Persoonal sistema) {
+	public Persona(String nombreYApellido, String telefono, ServcioTelefonico sistema) {
 		this.nombreYApellido = nombreYApellido;
 		this.telefono = telefono;
 		this.sistema = sistema;
-		this.llamadas = new ArrayList<Llamada>();
 	}
 
 	public String getNombreYApellido() {
@@ -26,7 +25,7 @@ public abstract class Persoona {
 		return telefono;
 	}
 
-	public Persoonal getSistema() {
+	public ServcioTelefonico getSistema() {
 		return sistema;
 	}
 
@@ -42,7 +41,7 @@ public abstract class Persoona {
 		this.telefono = telefono;
 	}
 
-	public void setSistema(Persoonal sistema) {
+	public void setSistema(ServcioTelefonico sistema) {
 		this.sistema = sistema;
 	}
 

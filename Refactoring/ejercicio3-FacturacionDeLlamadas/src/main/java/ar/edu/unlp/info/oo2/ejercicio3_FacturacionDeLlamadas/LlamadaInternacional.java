@@ -2,8 +2,8 @@ package ar.edu.unlp.info.oo2.ejercicio3_FacturacionDeLlamadas;
 
 public class LlamadaInternacional extends Llamada {
 
-    public LlamadaInternacional(String emisor, String receptor, int duracion) {
-        super(emisor, receptor, duracion);
+    public LlamadaInternacional(String emisor, String remitente, int duracion) {
+        super(emisor, remitente, duracion);
     }
 
     @Override

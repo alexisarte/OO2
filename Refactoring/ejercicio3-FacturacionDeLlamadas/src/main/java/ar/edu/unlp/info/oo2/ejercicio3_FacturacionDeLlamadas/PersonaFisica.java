@@ -1,18 +1,18 @@
 package ar.edu.unlp.info.oo2.ejercicio3_FacturacionDeLlamadas;
 
-public class PersonaFisica extends Persoona {
+public class PersonaFisica extends Persona {
 
 	private String dni;
-	static double descuentoFis = 0;
+	private static double descuentoFis = 0;
 
-	public PersonaFisica(String nombreYApellido, String telefono, Persoonal sistema, String dni) {
+	public PersonaFisica(String nombreYApellido, String telefono, ServcioTelefonico sistema, String dni) {
 		super(nombreYApellido, telefono, sistema);
 		this.dni = dni;
 	}
 
 	@Override
 	public double getDescuento() {
-		return descuentoFis;
+		return this.descuentoFis;
 	}
 
 }

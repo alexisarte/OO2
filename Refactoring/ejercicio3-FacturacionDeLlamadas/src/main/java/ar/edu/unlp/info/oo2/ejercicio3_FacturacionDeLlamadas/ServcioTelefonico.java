@@ -6,9 +6,9 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class Persoonal {
+public class ServcioTelefonico {
 
-	private List<Persoona> personas = new ArrayList<Persoona>();
+	private List<Persona> personas = new ArrayList<Persona>();
 	private List<Llamada> llamadas = new ArrayList<Llamada>();
 	private SortedSet<String> guiaTelefonica = new TreeSet<String>();
 
@@ -24,76 +24,78 @@ public class Persoonal {
 		}
 	}
 
-	public Persoona registrarPersonaFisica(String dni, String nombre) {
+	public Persona registrarPersonaFisica(String dni, String nombre) {
 		var numeroTelefonico = this.guiaTelefonica.last();
 		this.guiaTelefonica.remove(numeroTelefonico);
-		Persoona persona = new PersonaFisica(nombre, numeroTelefonico, this, dni);
+		Persona persona = new PersonaFisica(nombre, numeroTelefonico, this, dni);
 		this.personas.add(persona);
 		return persona;
 	}
 
-	public Persoona registrarPersonaJuridica(String cuit, String nombre) {
+	public Persona registrarPersonaJuridica(String cuit, String nombre) {
 		var numeroTelefonico = this.guiaTelefonica.last();
 		this.guiaTelefonica.remove(numeroTelefonico);
-		Persoona persona = new PersonaFisica(nombre, numeroTelefonico, this, cuit);
+		Persona persona = new PersonaJuridica(nombre, numeroTelefonico, this, cuit);
 		this.personas.add(persona);
 		return persona;
 	}
 
-	public boolean eliminarUsuario(Persoona p) {
-		List<Persoona> usuariosNoEliminados = p.getSistema().personas.stream().filter(persona -> persona != p)
+	public boolean eliminarUsuario(Persona p) {
+		List<Persona> personasRestantes = p.getSistema().personas.stream().filter(persona -> persona != p)
 				.collect(Collectors.toList());
 		boolean borre = false;
-		if (usuariosNoEliminados.size() < personas.size()) {
-			this.personas = usuariosNoEliminados;
+		if (personasRestantes.size() < personas.size()) {
+			this.personas = personasRestantes;
 			this.guiaTelefonica.add(p.getTelefono());
 			borre = true;
 		}
 		return borre;
-
 	}
 
-	public Llamada registrarLlamadaNacional(Persoona emisor, Persoona remitente, int duracion) {
+	public Llamada registrarLlamadaNacional(Persona emisor, Persona remitente, int duracion) {
 		Llamada llamada = new LlamadaNacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
 		llamadas.add(llamada);
 		emisor.agregarLlamada(llamada);
 		return llamada;
 	}
 
-	public Llamada registrarLlamadaInternacional(Persoona emisor, Persoona remitente, int duracion) {
+	public Llamada registrarLlamadaInternacional(Persona emisor, Persona remitente, int duracion) {
 		Llamada llamada = new LlamadaInternacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
 		llamadas.add(llamada);
 		emisor.agregarLlamada(llamada);
 		return llamada;
 	}
 
-	public double calcularMontoTotalLlamadas(Persoona p) {
+	public double calcularMontoTotalLlamadas(Persona p) {
 		double monto = 0;
-		Persoona aux = null;
-		for (Persoona pp : personas) {
-			if (pp.getTelefono() == p.getTelefono()) {
-				aux = pp;
-				break;
-			}
-		}
-		if (aux == null)
+		Persona persona = buscarPersona(p);
+		if (persona == null)
 			return monto;
-		if (aux != null) {
-			for (Llamada l : aux.getLlamadas()) {
-				double auxc = 0;
-				auxc += l.costo();
-				auxc -= auxc * aux.getDescuento();
-				monto += auxc;
+		if (persona != null) {
+			for (Llamada llamada : persona.getLlamadas()) {
+				double costoLlamada = 0;
+				costoLlamada += llamada.costo();
+				costoLlamada -= costoLlamada * persona.getDescuento();
+				monto += costoLlamada;
 			}
 		}
 		return monto;
+	}
+
+	private Persona buscarPersona(Persona p) {
+		for (Persona persona : personas) {
+			if (persona.getTelefono() == p.getTelefono()) {
+				return persona;
+			}
+		}
+		return null;
 	}
 
 	public int cantidadDeUsuarios() {
 		return personas.size();
 	}
 
-	public boolean existeUsuario(Persoona persona) {
+	public boolean existeUsuario(Persona persona) {
 		return personas.contains(persona);
 	}
 
