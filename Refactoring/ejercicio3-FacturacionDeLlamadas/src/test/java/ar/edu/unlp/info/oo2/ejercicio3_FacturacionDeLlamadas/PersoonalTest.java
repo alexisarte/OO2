@@ -6,10 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PersoonalTest {
-	
+
 	Persoonal sistema;
 	Persoona emisorPersonaFisca, remitentePersonaFisica, emisorPersonaJuridica, remitentePersonaJuridica;
-	
+
 	@BeforeEach
 	public void setUp() {
 		this.sistema = new Persoonal();
@@ -17,21 +17,21 @@ class PersoonalTest {
 		this.sistema.agregarTelefono("2214444555");
 		this.sistema.agregarTelefono("2214444556");
 		this.sistema.agregarTelefono("2214444557");
-		
-		this.emisorPersonaFisca = sistema.registrarUsuario("11555666", "Marcelo Tinelli" , "fisica");
-		this.remitentePersonaFisica = sistema.registrarUsuario("00000001", "Mirtha Legrand" , "fisica");
-		this.emisorPersonaJuridica = sistema.registrarUsuario("17555222", "Felfort" , "juridica");
-		this.remitentePersonaJuridica = sistema.registrarUsuario("25765432", "Moovistar" , "juridica");
-		
-		this.sistema.registrarLlamada(emisorPersonaJuridica, remitentePersonaFisica, "nacional", 10);
-		this.sistema.registrarLlamada(emisorPersonaJuridica, remitentePersonaFisica, "internacional", 8);
-		this.sistema.registrarLlamada(emisorPersonaJuridica, remitentePersonaJuridica, "nacional", 5);
-		this.sistema.registrarLlamada(emisorPersonaJuridica, remitentePersonaJuridica, "internacional", 7);
-		this.sistema.registrarLlamada(emisorPersonaFisca, remitentePersonaFisica, "nacional", 15);
-		this.sistema.registrarLlamada(emisorPersonaFisca, remitentePersonaFisica, "internacional", 45);
-		this.sistema.registrarLlamada(emisorPersonaFisca, remitentePersonaJuridica, "nacional", 13);
-		this.sistema.registrarLlamada(emisorPersonaFisca, remitentePersonaJuridica, "internacional", 17);
-		
+
+		this.emisorPersonaFisca = sistema.registrarPersonaFisica("11555666", "Marcelo Tinelli");
+		this.remitentePersonaFisica = sistema.registrarPersonaFisica("00000001", "Mirtha Legrand");
+		this.emisorPersonaJuridica = sistema.registrarPersonaJuridica("17555222", "Felfort");
+		this.remitentePersonaJuridica = sistema.registrarPersonaJuridica("25765432", "Moovistar");
+
+		this.sistema.registrarLlamadaNacional(emisorPersonaJuridica, remitentePersonaFisica, 10);
+		this.sistema.registrarLlamadaInternacional(emisorPersonaJuridica, remitentePersonaFisica, 8);
+		this.sistema.registrarLlamadaNacional(emisorPersonaJuridica, remitentePersonaJuridica, 5);
+		this.sistema.registrarLlamadaInternacional(emisorPersonaJuridica, remitentePersonaJuridica, 7);
+		this.sistema.registrarLlamadaNacional(emisorPersonaFisca, remitentePersonaFisica, 15);
+		this.sistema.registrarLlamadaInternacional(emisorPersonaFisca, remitentePersonaFisica, 45);
+		this.sistema.registrarLlamadaNacional(emisorPersonaFisca, remitentePersonaJuridica, 13);
+		this.sistema.registrarLlamadaInternacional(emisorPersonaFisca, remitentePersonaJuridica, 17);
+
 	}
 
 	@Test
@@ -41,18 +41,18 @@ class PersoonalTest {
 		assertEquals(this.sistema.calcularMontoTotalLlamadas(remitentePersonaFisica), 0);
 		assertEquals(this.sistema.calcularMontoTotalLlamadas(remitentePersonaJuridica), 0);
 	}
-	
+
 	@Test
 	void testAgregarUsuario() {
 		assertEquals(this.sistema.cantidadDeUsuarios(), 4);
-		this.sistema.agregarTelefono("2214444558"); 
-		Persoona nuevaPersona = this.sistema.registrarUsuario("2444555","Chiche Gelblung", "fisica");
-		
+		this.sistema.agregarTelefono("2214444558");
+		Persoona nuevaPersona = this.sistema.registrarPersonaFisica("2444555", "Chiche Gelblung");
+
 		assertEquals(this.sistema.cantidadDeUsuarios(), 5);
 		assertTrue(this.sistema.existeUsuario(nuevaPersona));
-		
+
 	}
-	
+
 	@Test
 	void testEliminarUsuario() {
 		assertEquals(this.sistema.cantidadDeUsuarios(), 4);

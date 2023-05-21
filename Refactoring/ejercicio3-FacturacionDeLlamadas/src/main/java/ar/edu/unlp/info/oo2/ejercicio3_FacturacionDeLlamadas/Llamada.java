@@ -1,40 +1,37 @@
 package ar.edu.unlp.info.oo2.ejercicio3_FacturacionDeLlamadas;
 
-public class Llamada {
-	
-	protected String tipoDeLlamada;
+public abstract class Llamada {
+
 	private String emisor;
 	private String remitente;
-	public int dur;
-	
+	protected int duracion;
+
 	public Llamada() {
-		
-	}
-	public Llamada(String s, String p, String p2, Persoona p3, int dur) {
-		this.tipoDeLlamada = s;
-		this.emisor= p;
-		this.remitente= p2;
-		this.dur = dur;
+
 	}
 
-	public String getTipoDeLlamada() {
-		return tipoDeLlamada;
+	public Llamada(String p, String p2, int duracion) {
+		this.emisor = p;
+		this.remitente = p2;
+		this.duracion = duracion;
 	}
 
-	public void setTipoDeLlamada(String tipoDeLlamada) {
-		this.tipoDeLlamada = tipoDeLlamada;
+	public int getDuracion() {
+		return duracion;
 	}
+
 	public void setEmisor(String q) {
 		emisor = q;
 	}
+
 	public String getRemitente() {
 		return remitente;
 	}
+
 	public void setRemitente(String remitente) {
 		this.remitente = remitente;
 	}
-	
-	
-	
-	
+
+	public abstract double costo();
+
 }

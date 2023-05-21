@@ -24,10 +24,6 @@ public class Persoonal {
 		}
 	}
 
-	public Persoona registrarUsuario(String data, String nombre) {
-		return null;
-	}
-
 	public Persoona registrarPersonaFisica(String dni, String nombre) {
 		var numeroTelefonico = this.guiaTelefonica.last();
 		this.guiaTelefonica.remove(numeroTelefonico);
@@ -57,20 +53,22 @@ public class Persoonal {
 
 	}
 
-	public Llamada registrarLlamada(Persoona q, Persoona q2, String t, int d) {
-		Llamada x = new Llamada();
-		x.tipoDeLlamada = t;
-		x.setEmisor(q.getTelefono());
-		x.setRemitente(q2.getTelefono());
-		x.dur = d;
-		llamadas.add(x);
-		q.getLlamadas().add(x);
-		return x;
+	public Llamada registrarLlamadaNacional(Persoona emisor, Persoona remitente, int duracion) {
+		Llamada llamada = new LlamadaNacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
+		llamadas.add(llamada);
+		emisor.agregarLlamada(llamada);
+		return llamada;
+	}
 
+	public Llamada registrarLlamadaInternacional(Persoona emisor, Persoona remitente, int duracion) {
+		Llamada llamada = new LlamadaInternacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
+		llamadas.add(llamada);
+		emisor.agregarLlamada(llamada);
+		return llamada;
 	}
 
 	public double calcularMontoTotalLlamadas(Persoona p) {
-		double c = 0;
+		double monto = 0;
 		Persoona aux = null;
 		for (Persoona pp : personas) {
 			if (pp.getTelefono() == p.getTelefono()) {
@@ -79,20 +77,16 @@ public class Persoonal {
 			}
 		}
 		if (aux == null)
-			return c;
+			return monto;
 		if (aux != null) {
 			for (Llamada l : aux.getLlamadas()) {
 				double auxc = 0;
-				if (l.tipoDeLlamada == "nacional") {
-					auxc += l.dur * 3 + (l.dur * 3 * 0.21);
-				} else if (l.tipoDeLlamada == "internacional") {
-					auxc += l.dur * 200 + (l.dur * 200 * 0.21);
-				}
+				auxc += l.costo();
 				auxc -= auxc * aux.getDescuento();
-				c += auxc;
+				monto += auxc;
 			}
 		}
-		return c;
+		return monto;
 	}
 
 	public int cantidadDeUsuarios() {

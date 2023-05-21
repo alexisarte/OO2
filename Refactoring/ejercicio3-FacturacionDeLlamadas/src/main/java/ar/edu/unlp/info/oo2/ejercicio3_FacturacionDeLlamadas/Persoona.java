@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Persoona {
+public abstract class Persoona {
 
 	private String nombreYApellido;
 	private String telefono;
@@ -29,7 +29,7 @@ public class Persoona {
 	public Persoonal getSistema() {
 		return sistema;
 	}
-	
+
 	public List<Llamada> getLlamadas() {
 		return Collections.unmodifiableList(this.llamadas);
 	}
@@ -45,13 +45,15 @@ public class Persoona {
 	public void setSistema(Persoonal sistema) {
 		this.sistema = sistema;
 	}
-	
-	public void setLista1(List<Llamada> lista1) {
+
+	public void setLlamadas(List<Llamada> lista1) {
 		this.llamadas = lista1;
 	}
 
-	public double getDescuento() {
-		return 0;
+	public abstract double getDescuento();
+
+	public void agregarLlamada(Llamada llamada) {
+		this.llamadas.add(llamada);
 	}
 
 }
