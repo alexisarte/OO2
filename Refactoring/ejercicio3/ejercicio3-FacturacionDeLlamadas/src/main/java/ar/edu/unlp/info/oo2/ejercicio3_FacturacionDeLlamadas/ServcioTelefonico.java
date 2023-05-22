@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class ServcioTelefonico {
 
 	private List<Persona> personas = new ArrayList<Persona>();
-	private List<Llamada> llamadas = new ArrayList<Llamada>();
 	private SortedSet<String> guiaTelefonica = new TreeSet<String>();
 
 	public boolean agregarTelefono(String str) {
@@ -41,7 +40,7 @@ public class ServcioTelefonico {
 	}
 
 	public boolean eliminarUsuario(Persona p) {
-		List<Persona> personasRestantes = p.getSistema().personas.stream().filter(persona -> persona != p)
+		List<Persona> personasRestantes = this.personas.stream().filter(persona -> persona != p)
 				.collect(Collectors.toList());
 		boolean borre = false;
 		if (personasRestantes.size() < personas.size()) {
@@ -54,14 +53,12 @@ public class ServcioTelefonico {
 
 	public Llamada registrarLlamadaNacional(Persona emisor, Persona remitente, int duracion) {
 		Llamada llamada = new LlamadaNacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
-		llamadas.add(llamada);
 		emisor.agregarLlamada(llamada);
 		return llamada;
 	}
 
 	public Llamada registrarLlamadaInternacional(Persona emisor, Persona remitente, int duracion) {
 		Llamada llamada = new LlamadaInternacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
-		llamadas.add(llamada);
 		emisor.agregarLlamada(llamada);
 		return llamada;
 	}
@@ -72,12 +69,7 @@ public class ServcioTelefonico {
 		if (persona == null)
 			return monto;
 		if (persona != null) {
-			for (Llamada llamada : persona.getLlamadas()) {
-				double costoLlamada = 0;
-				costoLlamada += llamada.costo();
-				costoLlamada -= costoLlamada * persona.getDescuento();
-				monto += costoLlamada;
-			}
+			monto += persona.calcularMontoLlamadas();
 		}
 		return monto;
 	}

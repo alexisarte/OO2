@@ -55,4 +55,15 @@ public abstract class Persona {
 		this.llamadas.add(llamada);
 	}
 
+	public double calcularMontoLlamadas() {
+		double monto = 0;
+		for (Llamada llamada : this.llamadas) {
+			double costoLlamada = 0;
+			costoLlamada += llamada.costo();
+			costoLlamada -= costoLlamada * this.getDescuento();
+			monto += costoLlamada;
+		}
+		return monto;
+	}
+
 }
