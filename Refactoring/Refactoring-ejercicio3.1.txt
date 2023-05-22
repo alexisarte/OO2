@@ -3,18 +3,21 @@
 title Facturación de Llamadas - Class Diagram
 
 class ServicioTelefonico {
-  ~descuentoJur: Real
-  ~descuentoFis: Real
+  -guiaTelefonica: String[*]
 
-  +agregarTelefono(str: String): boolean
-  +registrarUsuario(data: String, nombre: String, t: String): Persoona
-  +registrarLlamada(q: Persoona, q2: Persoona, d: integer): Llamada  
+  +agregarTelefono(str: String): Boolean
+  +registrarPersonaFisica(nYA: String, tel: String, dni: Integer): PersonaFisica
+  +registrarPersonaJuridica(nYA: String, tel: String, cuit: String): PersonaJuridica
+  +eliminarUsuario(p: Persoona): Boolean
+  +registrarLlamadaNacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaNacional
+  +registrarLlamadaInternacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaInternacional
   +calcularMontoTotalLlamadas(p: Persoona): Real
+  -buscarPersona(p: Persoona): Persona
   +cantidadDeUsuarios(): Integer
   +existeUsuario(p: Persoona): Boolean
 }
 
-class Persona {    
+abstract class Persona {    
   +nombreYApellido: String
   +telefono: String
   +sistema: ServicioTelefonico
@@ -23,29 +26,29 @@ class Persona {
 
 class PersonaFisica extends Persona {
   -dni: Integer
+  -descuentoFis: Real
 }
 
 class PersonaJuridica extends Persona {
   -cuit: String
+  -descuentoJur: Real
 }
 
 abstract Llamada {
-  #tipoDeLlamada: String 
-  -emisor: String 
-  -remitente: String
-  +duracion: Integer 
-  +<<create>>Llamada(s: String, p: String, p2: String, duracion: Integer): Llamada
+  -telEmisor: String 
+  -telRemitente: String
+  #duracion: Integer 
+  +<<create>>Llamada(p: String, p2: String, duracion: Integer): Llamada
   +{abstract} costo(): Real
 }
 
 class LlamadaNacional extends Llamada {
-  
+  +costo(): Real
 }
 
 class LlamadaInternacional extends Llamada {
-
+  +costo(): Real
 }
-
 
 ServicioTelefonico --> "0..*" Persona: personas
 ServicioTelefonico --> "0..*" Llamada: llamadas
