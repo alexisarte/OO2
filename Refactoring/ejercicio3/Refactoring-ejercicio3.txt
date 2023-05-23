@@ -38,6 +38,6 @@ Persoonal --> "0..*" Persoona: personas
 Persoonal --> "0..*" Llamada: llamadas
 Persoonal -> GuiaTelefonica: guiaTelefonica
 Persoona -> "0..*" Llamada: llamadas
-Persoona -> Persoonal: sitema
+Persoona --> Persoonal: sitema
 
 @enduml
