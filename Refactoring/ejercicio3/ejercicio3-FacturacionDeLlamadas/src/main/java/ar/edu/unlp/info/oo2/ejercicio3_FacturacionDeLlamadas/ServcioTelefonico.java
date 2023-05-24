@@ -64,23 +64,7 @@ public class ServcioTelefonico {
 	}
 
 	public double calcularMontoTotalLlamadas(Persona p) {
-		double monto = 0;
-		Persona persona = buscarPersona(p);
-		if (persona == null)
-			return monto;
-		if (persona != null) {
-			monto += persona.calcularMontoLlamadas();
-		}
-		return monto;
-	}
-
-	private Persona buscarPersona(Persona p) {
-		for (Persona persona : personas) {
-			if (persona.getTelefono() == p.getTelefono()) {
-				return persona;
-			}
-		}
-		return null;
+		return p.calcularMontoLlamadas();
 	}
 
 	public int cantidadDeUsuarios() {

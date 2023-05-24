@@ -2,8 +2,8 @@ package ar.edu.unlp.info.oo2.ejercicio3_FacturacionDeLlamadas;
 
 public abstract class Llamada {
 
-	private String emisor;
-	private String remitente;
+	private String telEmisor;
+	private String telRemitente;
 	protected int duracion;
 
 	public Llamada() {
@@ -11,8 +11,8 @@ public abstract class Llamada {
 	}
 
 	public Llamada(String emisor, String remitente, int duracion) {
-		this.emisor = emisor;
-		this.remitente = remitente;
+		this.telEmisor = emisor;
+		this.telRemitente = remitente;
 		this.duracion = duracion;
 	}
 
@@ -20,16 +20,16 @@ public abstract class Llamada {
 		return duracion;
 	}
 
-	public void setEmisor(String emisor) {
-		this.emisor = emisor;
+	public void setTelEmisor(String emisor) {
+		this.telEmisor = emisor;
 	}
 
-	public String getRemitente() {
-		return remitente;
+	public String getTelRemitente() {
+		return telRemitente;
 	}
 
-	public void setRemitente(String remitente) {
-		this.remitente = remitente;
+	public void setTelRemitente(String remitente) {
+		this.telRemitente = remitente;
 	}
 
 	public abstract double costo();

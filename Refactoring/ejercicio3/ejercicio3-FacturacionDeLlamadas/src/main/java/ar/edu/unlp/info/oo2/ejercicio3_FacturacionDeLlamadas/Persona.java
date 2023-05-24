@@ -8,13 +8,11 @@ public abstract class Persona {
 
 	private String nombreYApellido;
 	private String telefono;
-	private ServcioTelefonico sistema;
 	private List<Llamada> llamadas = new ArrayList<Llamada>();
 
 	public Persona(String nombreYApellido, String telefono, ServcioTelefonico sistema) {
 		this.nombreYApellido = nombreYApellido;
 		this.telefono = telefono;
-		this.sistema = sistema;
 	}
 
 	public String getNombreYApellido() {
@@ -23,10 +21,6 @@ public abstract class Persona {
 
 	public String getTelefono() {
 		return telefono;
-	}
-
-	public ServcioTelefonico getSistema() {
-		return sistema;
 	}
 
 	public List<Llamada> getLlamadas() {
@@ -39,10 +33,6 @@ public abstract class Persona {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public void setSistema(ServcioTelefonico sistema) {
-		this.sistema = sistema;
 	}
 
 	public void setLlamadas(List<Llamada> lista1) {
