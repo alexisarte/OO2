@@ -6,54 +6,54 @@ import java.util.List;
 
 public abstract class Persona {
 
+	private List<Llamada> llamadas;
 	private String nombreYApellido;
 	private String telefono;
-	private List<Llamada> llamadas = new ArrayList<Llamada>();
 
-	public Persona(String nombreYApellido, String telefono, ServcioTelefonico sistema) {
+	public Persona(String nombreYApellido, String telefono) {
+		this.llamadas = new ArrayList<>();
 		this.nombreYApellido = nombreYApellido;
 		this.telefono = telefono;
-	}
-
-	public String getNombreYApellido() {
-		return nombreYApellido;
-	}
-
-	public String getTelefono() {
-		return telefono;
 	}
 
 	public List<Llamada> getLlamadas() {
 		return Collections.unmodifiableList(this.llamadas);
 	}
 
-	public void setNombreYApellido(String nombreYApellido) {
-		this.nombreYApellido = nombreYApellido;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
 	public void setLlamadas(List<Llamada> lista1) {
 		this.llamadas = lista1;
 	}
 
+	public String getNombreYApellido() {
+		return nombreYApellido;
+	}
+
+	public void setNombreYApellido(String nya) {
+		this.nombreYApellido = nya;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String tel) {
+		this.telefono = tel;
+	}
+
 	public abstract double getDescuento();
+
+	public double calcularMontoTotalLlamadas() {
+		return this.llamadas
+					.stream()
+					.mapToDouble(llamada -> {
+								double costo = llamada.calcularCosto();
+								return costo - costo * this.getDescuento();
+					})
+					.reduce(0, Double::sum);
+	}
 
 	public void agregarLlamada(Llamada llamada) {
 		this.llamadas.add(llamada);
-	}
-
-	public double calcularMontoLlamadas() {
-		double monto = 0;
-		for (Llamada llamada : this.llamadas) {
-			double costoLlamada = 0;
-			costoLlamada += llamada.costo();
-			costoLlamada -= costoLlamada * this.getDescuento();
-			monto += costoLlamada;
-		}
-		return monto;
 	}
 
 }

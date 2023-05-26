@@ -2,7 +2,7 @@
 
 title Facturación de Llamadas - Class Diagram
 
-class ServicioTelefonico {
+class Persoonal {
   -guiaTelefonica: String[*]
 
   +agregarTelefono(str: String): Boolean
@@ -11,47 +11,58 @@ class ServicioTelefonico {
   +eliminarUsuario(p: Persoona): Boolean
   +registrarLlamadaNacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaNacional
   +registrarLlamadaInternacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaInternacional
-  +calcularMontoTotalLlamadas(p: Persoona): Real
-  -buscarPersona(p: Persoona): Persona
   +cantidadDeUsuarios(): Integer
   +existeUsuario(p: Persoona): Boolean
 }
 
 abstract class Persona {    
-  +nombreYApellido: String
-  +telefono: String
-  +sistema: ServicioTelefonico
-  +<<create>>Persona(nYA: String, tel: String, sistema: ServicioTelefonico): Persona
+  -nombreYApellido: String
+  -telefono: String
+
+  +<<create>> Persona(nYA: String, tel: String): Persona
+  +calcularMontoTotalLlamadas(): Real
+  +agregarLlamada(llamada: Llamada): Boolean
+  +{abstract} getDescuento(): Real
 }
 
 class PersonaFisica extends Persona {
-  -dni: Integer
+  -dni: String
   -descuentoFis: Real
+
+  +<<create>> PersonaFisica(nYA: String, tel: String, dni: String): PersonaFisica
+  +getDescuento(): Real
 }
 
 class PersonaJuridica extends Persona {
   -cuit: String
   -descuentoJur: Real
+
+  +<<create>> PersonaJuridica(nYA: String, tel: String, cuit: String): PersonaJuridica
+  +getDescuento(): Real
 }
 
 abstract Llamada {
   -telEmisor: String 
   -telRemitente: String
   #duracion: Integer 
-  +<<create>>Llamada(p: String, p2: String, duracion: Integer): Llamada
+  #impuestoComun: Real
+  +<<create>> Llamada(telEmisor: String, telRemitente: String, duracion: Integer): Llamada
   +{abstract} costo(): Real
 }
 
 class LlamadaNacional extends Llamada {
+  +<<create>> LlamadaNacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaNacional
+  #impuestoNacional: Integer
   +costo(): Real
 }
 
 class LlamadaInternacional extends Llamada {
+  +<<create>> LlamadaInternacional(telEmisor: String, telRemitente: String, duracion: Integer): LlamadaInternacional
+  #impuestoInternacional: Integer
   +costo(): Real
 }
 
-ServicioTelefonico --> "0..*" Persona: personas
-ServicioTelefonico --> "0..*" Llamada: llamadas
+Persoonal --> "0..*" Persona: personas
 Persona --> "0..*" Llamada: llamadas
 
 @enduml

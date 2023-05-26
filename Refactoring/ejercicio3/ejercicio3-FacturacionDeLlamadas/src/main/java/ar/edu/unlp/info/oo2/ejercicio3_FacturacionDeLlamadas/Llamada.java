@@ -5,6 +5,7 @@ public abstract class Llamada {
 	private String telEmisor;
 	private String telRemitente;
 	protected int duracion;
+	protected static final double impuestoComun = 0.21;
 
 	public Llamada() {
 
@@ -32,6 +33,6 @@ public abstract class Llamada {
 		this.telRemitente = remitente;
 	}
 
-	public abstract double costo();
+	public abstract double calcularCosto();
 
 }

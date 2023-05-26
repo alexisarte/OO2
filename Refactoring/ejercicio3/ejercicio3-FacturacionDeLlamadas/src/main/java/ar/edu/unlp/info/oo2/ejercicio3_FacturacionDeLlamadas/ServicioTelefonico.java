@@ -4,29 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
-public class ServcioTelefonico {
+public class ServicioTelefonico {
 
 	private List<Persona> personas = new ArrayList<Persona>();
 	private SortedSet<String> guiaTelefonica = new TreeSet<String>();
 
-	public boolean agregarTelefono(String str) {
-		boolean encontre = guiaTelefonica.contains(str);
-		if (!encontre) {
-			guiaTelefonica.add(str);
-			encontre = true;
-			return encontre;
-		} else {
-			encontre = false;
-			return encontre;
-		}
+	public boolean agregarTelefono(String telefono) {
+		return this.guiaTelefonica.add(telefono);
 	}
 
 	public Persona registrarPersonaFisica(String dni, String nombre) {
 		var numeroTelefonico = this.guiaTelefonica.last();
 		this.guiaTelefonica.remove(numeroTelefonico);
-		Persona persona = new PersonaFisica(nombre, numeroTelefonico, this, dni);
+		Persona persona = new PersonaFisica(nombre, numeroTelefonico, dni);
 		this.personas.add(persona);
 		return persona;
 	}
@@ -34,21 +25,17 @@ public class ServcioTelefonico {
 	public Persona registrarPersonaJuridica(String cuit, String nombre) {
 		var numeroTelefonico = this.guiaTelefonica.last();
 		this.guiaTelefonica.remove(numeroTelefonico);
-		Persona persona = new PersonaJuridica(nombre, numeroTelefonico, this, cuit);
+		Persona persona = new PersonaJuridica(nombre, numeroTelefonico, cuit);
 		this.personas.add(persona);
 		return persona;
 	}
 
 	public boolean eliminarUsuario(Persona p) {
-		List<Persona> personasRestantes = this.personas.stream().filter(persona -> persona != p)
-				.collect(Collectors.toList());
-		boolean borre = false;
-		if (personasRestantes.size() < personas.size()) {
-			this.personas = personasRestantes;
-			this.guiaTelefonica.add(p.getTelefono());
-			borre = true;
+		if (this.personas.remove(p)) {
+			this.agregarTelefono(p.getTelefono());
+			return true;
 		}
-		return borre;
+		return false;
 	}
 
 	public Llamada registrarLlamadaNacional(Persona emisor, Persona remitente, int duracion) {
@@ -61,10 +48,6 @@ public class ServcioTelefonico {
 		Llamada llamada = new LlamadaInternacional(emisor.getTelefono(), remitente.getTelefono(), duracion);
 		emisor.agregarLlamada(llamada);
 		return llamada;
-	}
-
-	public double calcularMontoTotalLlamadas(Persona p) {
-		return p.calcularMontoLlamadas();
 	}
 
 	public int cantidadDeUsuarios() {

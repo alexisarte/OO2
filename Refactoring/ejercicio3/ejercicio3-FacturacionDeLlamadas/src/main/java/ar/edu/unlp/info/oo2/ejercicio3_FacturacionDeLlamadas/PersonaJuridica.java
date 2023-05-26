@@ -5,14 +5,14 @@ public class PersonaJuridica extends Persona {
 	private String cuit;
 	private static double descuentoJur = 0.15;
 
-	public PersonaJuridica(String nombreYApellido, String telefono, ServcioTelefonico sistema, String cuit) {
-		super(nombreYApellido, telefono, sistema);
+	public PersonaJuridica(String nombreYApellido, String telefono, String cuit) {
+		super(nombreYApellido, telefono);
 		this.cuit = cuit;
 	}
-
+	
 	@Override
 	public double getDescuento() {
-		return this.descuentoJur;
+		return descuentoJur;
 	}
 
 }

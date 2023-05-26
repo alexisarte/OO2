@@ -5,14 +5,14 @@ public class PersonaFisica extends Persona {
 	private String dni;
 	private static double descuentoFis = 0;
 
-	public PersonaFisica(String nombreYApellido, String telefono, ServcioTelefonico sistema, String dni) {
-		super(nombreYApellido, telefono, sistema);
+	public PersonaFisica(String nombreYApellido, String telefono, String dni) {
+		super(nombreYApellido, telefono);
 		this.dni = dni;
 	}
-
+	
 	@Override
 	public double getDescuento() {
-		return this.descuentoFis;
+		return descuentoFis;
 	}
 
 }
