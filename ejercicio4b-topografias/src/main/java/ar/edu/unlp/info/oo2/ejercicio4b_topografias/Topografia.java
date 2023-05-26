@@ -2,11 +2,13 @@ package ar.edu.unlp.info.oo2.ejercicio4b_topografias;
 
 public abstract class Topografia {
 	
-	abstract double proporcionDeAgua();
+	public abstract double proporcionDeAgua();
 	
-	abstract double proporcionDeTierra();
+	public abstract double proporcionDeTierra();
 	
-	abstract boolean esIgualACompuesta(Topografia otraTopografia);
+	public abstract boolean esIgualACompuesta(Topografia otraTopografia);
+	
+	public abstract boolean equals(Topografia otraTopografia);
 	
 	@Override
 	public boolean equals(Object otraTopografia) {
@@ -15,7 +17,5 @@ public abstract class Topografia {
 		}
 		return false;
 	}
-	
-	public abstract boolean equals(Topografia t);
 
 }
