@@ -23,13 +23,12 @@ public class DatabaseRealAccess implements DatabaseAccess {
     public int insertNewRow(List<String> rowData) {
         this.data.put("select * from comics where id=" + this.currentId, rowData);
         this.currentId = this.currentId + 1;
-
         return this.currentId - 1;
     }
     
     @Override
     public Collection<String> getSearchResults(String queryString) {
-        return this.data.getOrDefault(queryString, Collections.emptyList());
-    }
+		return this.data.getOrDefault(queryString, Collections.emptyList());
+	}
 
 }
