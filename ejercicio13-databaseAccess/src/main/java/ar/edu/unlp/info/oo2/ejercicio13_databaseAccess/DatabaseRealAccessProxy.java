@@ -17,7 +17,7 @@ public class DatabaseRealAccessProxy implements DatabaseAccess {
 
 	@Override
 	public int insertNewRow(List<String> rowData) {
-		return isLogged ? this.realDataBase.insertNewRow(rowData) : null;
+		return isLogged ? this.realDataBase.insertNewRow(rowData) : -1;
 	}
 
 	@Override
