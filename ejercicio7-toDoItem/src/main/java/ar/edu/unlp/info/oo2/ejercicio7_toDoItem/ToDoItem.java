@@ -66,7 +66,7 @@ public class ToDoItem {
     	this.state.addComment(comment);
     }
     
-    public void agregar(String comment) {
+    public void add(String comment) {
     	this.comments.add(comment);
     }
     

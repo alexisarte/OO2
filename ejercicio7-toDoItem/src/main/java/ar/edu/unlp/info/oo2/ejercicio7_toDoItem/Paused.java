@@ -13,7 +13,7 @@ public class Paused extends ToDoItemState {
 
 	@Override
 	public void finish() {
-		this.context.setState(new Finished(this.context));
+		
 	}
 
 }

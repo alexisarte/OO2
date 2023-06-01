@@ -18,7 +18,7 @@ public abstract class ToDoItemState {
 	public abstract void togglePause();
 
 	public void finish() {
-		
+		this.context.setState(new Finished(this.context));
 	}
 
 	public Duration workedTime() {
@@ -26,7 +26,7 @@ public abstract class ToDoItemState {
 	}
 
 	public void addComment(String comment) {
-		
+		this.context.add(comment);
 	}
 	
 }

@@ -19,9 +19,10 @@ public class Finished extends ToDoItemState {
 	public Duration workedTime() {
 		return Duration.between(this.context.getStartTime(), this.context.getEndTime());
 	}
-
-	public void addComment(ToDoItem item, String comment) {
-		item.agregar(comment);
+	
+	@Override
+	public void addComment(String comment) {
+		
 	}
 
 }
