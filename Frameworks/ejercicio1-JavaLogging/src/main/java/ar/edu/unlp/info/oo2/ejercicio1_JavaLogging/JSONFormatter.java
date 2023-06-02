@@ -11,7 +11,7 @@ public class JSONFormatter extends Formatter {
   public String format(LogRecord record) {
     JSONObject jsonObject = new JSONObject();
     jsonObject.put("message", record.getMessage());
-    jsonObject.put("legajo", record.getLevel());
+    jsonObject.put("level", record.getLevel());
     return jsonObject.toString() + ",";
   }
 
