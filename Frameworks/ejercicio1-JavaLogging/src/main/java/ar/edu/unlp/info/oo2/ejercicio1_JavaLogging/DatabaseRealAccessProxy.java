@@ -23,20 +23,20 @@ public class DatabaseRealAccessProxy implements DatabaseAccess {
 	@Override
 	public int insertNewRow(List<String> rowData) {
 		if (isLogged) {
-			this.logger.log(Level.WARNING, "Se insertó la tupla");
+			this.logger.warning("Se insertó la tupla");
 			return this.realDataBase.insertNewRow(rowData);
 		}
-		this.logger.log(Level.SEVERE, "Access denied");
+		this.logger.severe("Access denied");
 		return -1;
 	}
 
 	@Override
 	public Collection<String> getSearchResults(String queryString) {
 		if (isLogged) {
-			this.logger.log(Level.INFO, "Se muestran los resultados");
+			this.logger.info("Se muestran los resultados");
 			return this.realDataBase.getSearchResults(queryString);
 		}
-		this.logger.log(Level.SEVERE, "Access denied");
+		this.logger.severe("Access denied");
 		return Collections.emptyList();
 	}
 
