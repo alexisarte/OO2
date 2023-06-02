@@ -3,40 +3,43 @@ package ar.edu.unlp.info.oo2.ejercicio1_JavaLogging;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.Handler;
 
 public class DatabaseRealAccessProxy implements DatabaseAccess {
 
 	private String password;
 	private boolean isLogged;
 	private DatabaseRealAccess realDataBase;
-	private Logger logger;
+	private static final Logger LOGGER = Logger.getLogger("db");
 
-	public DatabaseRealAccessProxy(DatabaseRealAccess db, String password) {
+	public DatabaseRealAccessProxy(DatabaseRealAccess db, String password) throws Exception {
 		this.password = password;
 		this.realDataBase = db;
-		this.logger = Logger.getLogger("");
-		this.logger.setLevel(Level.INFO);
+
+		Handler handler = new FileHandler("log.txt");
+		handler.setFormatter(new JSONFormatter());
+		LOGGER.addHandler(handler);
 	}
 
 	@Override
 	public int insertNewRow(List<String> rowData) {
 		if (isLogged) {
-			this.logger.warning("Se insertó la tupla");
+			LOGGER.warning("Se inserta la tupla");
 			return this.realDataBase.insertNewRow(rowData);
 		}
-		this.logger.severe("Access denied");
+		LOGGER.severe("Access denied");
 		return -1;
 	}
 
 	@Override
 	public Collection<String> getSearchResults(String queryString) {
 		if (isLogged) {
-			this.logger.info("Se muestran los resultados");
+			LOGGER.info("Se muestran los resultados");
 			return this.realDataBase.getSearchResults(queryString);
 		}
-		this.logger.severe("Access denied");
+		LOGGER.severe("Access denied");
 		return Collections.emptyList();
 	}
 
