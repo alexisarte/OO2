@@ -14,13 +14,7 @@ import jakarta.mail.internet.MimeMessage;
 
 public class MailHandler extends Handler {
 
-	private Handler handler;
-
-	public MailHandler() {
-		
-	}
-
-	public void sendMail(LogRecord record) {
+	public void sendMail(String formattedMessage, String level) {
 		try {
 			String from = "example@logger.com";
 			String to = "destination@mail.com";
@@ -44,8 +38,8 @@ public class MailHandler extends Handler {
 		    Message message = new MimeMessage(session);
 		    message.setFrom(new InternetAddress(from, "Java logging mail"));
 		    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-		    message.setSubject(record.getLevel().toString());
-		    message.setText(record.getMessage());
+		    message.setSubject(level);
+		    message.setText(formattedMessage);
 		    Transport.send(message);
 		}
 		catch (Exception e) {
@@ -55,8 +49,9 @@ public class MailHandler extends Handler {
 
 	@Override
 	public void publish(LogRecord record) {
-		this.sendMail(record);
-		this.handler.publish(record);
+		var formattedMessage  = getFormatter().format(record);
+		var level = record.getLevel().toString();
+		this.sendMail(formattedMessage, level);
 	}
 
 	@Override
