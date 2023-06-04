@@ -13,5 +13,6 @@ public class Prueba {
     proxy.getSearchResults("select * from comics where id=1");
     proxy.login(password);
     proxy.insertNewRow(null);
+    proxy.getSearchResults("select * from comics where id=1");
   }
 }

@@ -27,7 +27,7 @@ public class FilterHandler extends Handler {
 		if (record.getMessage() != null) {
 			record.setMessage(this.censoringWords(record.getMessage()));
 		}
-		handler.publish(record);
+		this.handler.publish(record);
 	}
 
 	@Override
