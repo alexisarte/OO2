@@ -4,5 +4,9 @@ public class Servicio {
 
 	private int nroAsiento;
 	private Vuelo vuelo;
+	
+	public void liberarAsiento() {
+		this.vuelo.liberarAsiento();
+	}
 
 }
