@@ -7,9 +7,9 @@ public class Vuelo {
 	private LocalDate dia;
 	private int cantOcupados;
 	private TipoVuelo tipo;
-	private Avion avion;
+	private Aeronave avion;
 
-	public Vuelo(LocalDate dia, int cantOcupados, TipoVuelo tipo, Avion avion) {
+	public Vuelo(LocalDate dia, int cantOcupados, TipoVuelo tipo, Aeronave avion) {
 		super();
 		this.dia = dia;
 		this.cantOcupados = cantOcupados;
@@ -29,7 +29,7 @@ public class Vuelo {
 		return tipo;
 	}
 
-	public Avion getAvion() {
+	public Aeronave getAvion() {
 		return avion;
 	}
 

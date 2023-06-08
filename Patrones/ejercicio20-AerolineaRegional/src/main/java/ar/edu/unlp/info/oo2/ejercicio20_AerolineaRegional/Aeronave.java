@@ -3,12 +3,12 @@ package ar.edu.unlp.info.oo2.ejercicio20_AerolineaRegional;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Avion {
+public class Aeronave {
 
 	private int cantAsientos;
 	private List<Vuelo> vuelos;
 
-	public Avion(int cantAsientos, List<Vuelo> vuelos) {
+	public Aeronave(int cantAsientos, List<Vuelo> vuelos) {
 		super();
 		this.cantAsientos = cantAsientos;
 		this.vuelos = vuelos;
@@ -27,7 +27,7 @@ public class Avion {
 									.mapToDouble(v -> v.getArriba() - v.getSalida()).sum();
 	}
 
-	public double horasVoladas(LocalDate from, LocalDate to) {
+	public double horasVoladas() {
 		return this.vuelos.stream().mapToDouble(v -> v.getArriba() - v.getSalida()).sum();
 	}
 

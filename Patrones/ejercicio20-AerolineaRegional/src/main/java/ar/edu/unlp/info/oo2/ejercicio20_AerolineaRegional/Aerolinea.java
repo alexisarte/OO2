@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Aerolinea {
 
-	private List<Avion> aeronaves;
+	private List<Aeronave> aeronaves;
 	private List<Vuelo> vuelos;
 	private List<Pasaje> pasajes;
 	private RateDiario rate;
@@ -18,8 +18,9 @@ public class Aerolinea {
 		return pasaje;
 	}
 
-	public void modificarPasaje() {
-		
+	public Pasaje modificarPasaje(Pasaje pasaje, List<Servicio> servicios) {
+		pasaje.setServicios(servicios);
+		return pasaje;
 	}
 
 	public void cancelarPasaje(Pasaje pasaje) {
@@ -27,16 +28,22 @@ public class Aerolinea {
 		this.pasajes.remove(pasaje);
 	}
 
-	public double promediosDeOcupacionVuelos() {
-		return this.vuelos.stream().mapToInt(Vuelo::getCantOcupados).sum() / this.vuelos.size();
+	public double promedioOcupacionVuelo(String vuelo, LocalDate from, LocalDate to) {
+		return this.vuelos.stream().filter(v -> v.getTipo().getVuelo().equals(vuelo)).mapToInt(v -> v.getCantOcupados())
+				.average().orElse(0);
 	}
 
-	public double horasVoladasAvionesEnPeriodo(LocalDate from, LocalDate to) {
-		return this.aeronaves.stream().mapToDouble(a -> a.horasVoladasEnPeriodo(from, to)).sum();
+	public double horasVoladasAvionPeriodo(Aeronave aeronave, LocalDate from, LocalDate to) {
+		return aeronave.horasVoladasEnPeriodo(from, to);
 	}
 
-	public double horasVoladasAviones(LocalDate from, LocalDate to) {
-		return this.aeronaves.stream().mapToDouble(a -> a.horasVoladas(from, to)).sum();
+	public double horasVoladasAvion(Aeronave aeronave) {
+		return aeronave.horasVoladas();
+	}
+
+	public double eficenciaTarifas() {
+		return this.pasajes.stream().mapToDouble(p -> p.costo()).sum()
+				/ this.pasajes.stream().mapToDouble(p -> p.costoBasico()).sum();
 	}
 
 }

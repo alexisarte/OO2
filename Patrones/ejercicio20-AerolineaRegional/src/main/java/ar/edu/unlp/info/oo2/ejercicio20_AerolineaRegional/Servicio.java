@@ -9,4 +9,12 @@ public class Servicio {
 		this.vuelo.liberarAsiento();
 	}
 
+	public int getNroAsiento() {
+		return nroAsiento;
+	}
+
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
 }
