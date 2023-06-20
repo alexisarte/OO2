@@ -11,11 +11,8 @@ public class SugerenciaSimilaridad extends Sugerencia {
 
 	@Override
 	public List<Pelicula> sugerirPeliculas() {
-		return this.deco.getReproducidas().stream().flatMap(p -> p.getSimilares().stream())
-				.filter(p -> !this.deco.getReproducidas().contains(p))
-    			.sorted(Comparator.comparing(Pelicula::getAnioEstreno).reversed())
-    			.limit(3).toList();
-
+		return this.deco.getReproducidas().stream().flatMap(p -> p.getSimilares().stream()).distinct()
+				.sorted(Comparator.comparing(Pelicula::getAnioEstreno).reversed()).toList();
 	}
 
 }

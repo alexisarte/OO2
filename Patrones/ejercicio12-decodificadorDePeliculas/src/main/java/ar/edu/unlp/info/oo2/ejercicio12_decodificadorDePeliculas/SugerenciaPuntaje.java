@@ -11,10 +11,8 @@ public class SugerenciaPuntaje extends Sugerencia {
 
 	@Override
 	public List<Pelicula> sugerirPeliculas() {
-    	return this.deco.getPeliculas().stream()
-    			.filter(p -> !this.deco.getReproducidas().contains(p))
-    			.sorted(Comparator.comparing(Pelicula::getPuntaje).reversed())
-    			.limit(3).toList();
-    }
+		return this.deco.getPeliculas().stream().sorted(Comparator.comparing(Pelicula::getPuntaje).reversed()
+				.thenComparing(Pelicula::getAnioEstreno, Comparator.reverseOrder())).toList();
+	}
 
 }

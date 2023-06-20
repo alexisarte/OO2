@@ -10,6 +10,12 @@ public abstract class Sugerencia {
 		this.deco = deco;
 	}
 
+	public List<Pelicula> obtenerSugerencias() {
+		return this.sugerirPeliculas().stream()
+				.filter(p -> !this.deco.getReproducidas().contains(p))
+				.limit(3).toList();
+	}
+	
 	public abstract List<Pelicula> sugerirPeliculas();
 
 }

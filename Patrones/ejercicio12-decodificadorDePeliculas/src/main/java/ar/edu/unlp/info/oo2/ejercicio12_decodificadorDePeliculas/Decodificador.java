@@ -1,20 +1,25 @@
 package ar.edu.unlp.info.oo2.ejercicio12_decodificadorDePeliculas;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Decodificador {
 	
-    private List<Pelicula> peliculas;
-    private List<Pelicula> reproducidas;
+    private List<Pelicula> peliculas, reproducidas;
     private Sugerencia criterioSugerencia;
     
-    public void configurarDeco(Sugerencia criterioSugerencia) {
+    public Decodificador() {
+		this.peliculas = new ArrayList<>();
+		this.reproducidas = new ArrayList<>();
+	}
+
+	public void configurarDeco(Sugerencia criterioSugerencia) {
         this.criterioSugerencia = criterioSugerencia;
     }
     
-    public List<Pelicula> sugerirPeliculas() {
-        return criterioSugerencia.sugerirPeliculas();
+    public List<Pelicula> obtenerSugerencias() {
+        return criterioSugerencia.obtenerSugerencias();
     }
 
 	public List<Pelicula> getPeliculas() {
@@ -27,6 +32,10 @@ public class Decodificador {
 	
 	public void reproducir(Pelicula peli) {
 		this.reproducidas.add(peli);
+	}
+
+	public void agregarPelicula(Pelicula peli) {
+		this.peliculas.add(peli);
 	}
     
 }
