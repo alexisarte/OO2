@@ -43,7 +43,7 @@ public class Aerolinea {
 
 	public double eficenciaTarifas() {
 		return this.pasajes.stream().mapToDouble(p -> p.costo()).sum()
-				/ this.pasajes.stream().mapToDouble(p -> p.costoBasico()).sum();
+				/ this.pasajes.stream().mapToDouble(p -> p.costoBase()).sum();
 	}
 
 }

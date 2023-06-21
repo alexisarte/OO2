@@ -37,14 +37,6 @@ public class Vuelo {
 		return this.dia.isAfter(from) && this.dia.isBefore(to) || this.dia.equals(from) || this.dia.equals(to);
 	}
 
-	public double getSalida() {
-		return this.tipo.getArriba();
-	}
-
-	public double getArriba() {
-		return this.tipo.getArriba();
-	}
-
 	public void liberarAsiento() {
 		this.cantOcupados--;
 	}

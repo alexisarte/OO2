@@ -9,7 +9,6 @@ public class Aeronave {
 	private List<Vuelo> vuelos;
 
 	public Aeronave(int cantAsientos, List<Vuelo> vuelos) {
-		super();
 		this.cantAsientos = cantAsientos;
 		this.vuelos = vuelos;
 	}
@@ -24,11 +23,11 @@ public class Aeronave {
 
 	public double horasVoladasEnPeriodo(LocalDate from, LocalDate to) {
 		return this.vuelos.stream().filter(v -> v.includesDate(from, to))
-									.mapToDouble(v -> v.getArriba() - v.getSalida()).sum();
+				.mapToDouble(v -> v.getTipo().getArriba() - v.getTipo().getSalida()).sum();
 	}
 
 	public double horasVoladas() {
-		return this.vuelos.stream().mapToDouble(v -> v.getArriba() - v.getSalida()).sum();
+		return this.vuelos.stream().mapToDouble(v -> v.getTipo().getArriba() - v.getTipo().getSalida()).sum();
 	}
 
 }
