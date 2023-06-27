@@ -1,7 +1,6 @@
 package ar.edu.unlp.info.oo2.ejercicio14_fileManager;
 
 import java.time.LocalDate;
-import java.util.Random;
 
 public class BaseFile implements FileOO2 {
 
@@ -13,7 +12,6 @@ public class BaseFile implements FileOO2 {
 	private String permits;
 
 	public BaseFile(String name, String extension, double size) {
-		Random rand = new Random();
 		this.name = name;
 		this.extension = extension;
 		this.size = size;

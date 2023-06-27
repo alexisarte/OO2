@@ -8,7 +8,7 @@ public class SizeDecorator extends FileDecorator {
 
 	@Override
 	public String prettyPrint() {
-		return this.file.prettyPrint() + " - " + this.file.getSize() + "mb";
+		return super.prettyPrint() + " - " + this.getSize() + "mb";
 	}
 
 }

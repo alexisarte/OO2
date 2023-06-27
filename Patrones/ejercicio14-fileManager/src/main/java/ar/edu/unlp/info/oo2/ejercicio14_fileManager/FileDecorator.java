@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class FileDecorator implements FileOO2 {
 
-	protected FileOO2 file;
+	private FileOO2 file;
 
 	public FileDecorator(FileOO2 file) {
 		this.file = file;

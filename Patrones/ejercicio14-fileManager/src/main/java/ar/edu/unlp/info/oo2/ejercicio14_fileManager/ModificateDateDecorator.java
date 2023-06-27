@@ -8,7 +8,7 @@ public class ModificateDateDecorator extends FileDecorator {
 
 	@Override
 	public String prettyPrint() {
-		return this.file.prettyPrint() + " - " + this.file.getModificateDate();
+		return super.prettyPrint() + " - " + this.getModificateDate();
 	}
 
 }
