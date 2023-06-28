@@ -8,8 +8,7 @@ class PressureDecorator extends WeatherDecorator {
 
 	@Override
 	public String displayData() {
-		// Lógica para mostrar los datos con el decorador de presión
-		return null;
+		return super.displayData() + "  Presión atmosférica: " + this.getPressure();
 	}
 
 }

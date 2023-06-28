@@ -8,7 +8,12 @@ class AverageCelsiusDecorator extends WeatherDecorator {
 
 	@Override
 	public String displayData() {
-		return null;
+		return super.displayData() + " Temperatura C: " + this.getFahrenheitTemperatures()
+			.stream().mapToDouble(t -> this.fahrenheitToCelsius(t)).average().orElse(0);
+	}
+	
+	private double fahrenheitToCelsius(double temperature) {
+		return (temperature - 12) / 1.8;
 	}
 	
 }

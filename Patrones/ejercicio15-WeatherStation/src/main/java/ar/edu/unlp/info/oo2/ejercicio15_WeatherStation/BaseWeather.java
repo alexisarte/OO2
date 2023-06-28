@@ -5,28 +5,37 @@ import java.util.List;
 class BaseWeather implements Weather {
 
 	private HomeWeatherStation weather;
+	
+	public BaseWeather(HomeWeatherStation weather) {
+		this.weather = weather;
+	}
 
 	@Override
 	public String displayData() {
 		return "";
 	}
-
-	public double getTemperatureFahrenheit() {
+	
+	@Override
+	public double getFahrenheitTemperature() {
 		return this.weather.getTemperaturaFahrenheit();
 	}
 
+	@Override
 	public double getPressure() {
 		return this.weather.getPresion();
 	}
 
+	@Override
 	public double getSolarRadiation() {
 		return this.weather.getRadiacionSolar();
 	}
 
-	public List<Double> getTemperaturesFahrenheit() {
+	@Override
+	public List<Double> getFahrenheitTemperatures() {
 		return this.weather.getTemperaturasFahrenheit();
 	}
 	
+	@Override
 	public void addTemperature(double temperature) {
 		this.weather.addTemperature(temperature);
 	}
