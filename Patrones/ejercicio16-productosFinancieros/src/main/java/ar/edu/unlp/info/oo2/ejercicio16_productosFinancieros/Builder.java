@@ -1,15 +1,15 @@
 package ar.edu.unlp.info.oo2.ejercicio16_productosFinancieros;
 
-public abstract class Builder {
+public interface Builder {
 	
-	public abstract void construirCompraDolares(double valorDeCambio);
+	void construirCompraDolares(double valorDeCambio);
 
-	public abstract void construirCompraPesos(double valorDeCambio);
+	void construirCompraPesos(double valorDeCambio);
 
-	public abstract void construirPlazoFijo(int dias, double interes);
+	void construirPlazoFijo(int dias, double interes);
 
-	public abstract void construirPlazoFijoRenovable(int dias, double interes);
+	void construirPlazoFijoRenovable(int dias, double interes);
 
-	public abstract ProductoCombinado getProductoCombinado();
+	ProductoCombinado getProductoCombinado();
 
 }

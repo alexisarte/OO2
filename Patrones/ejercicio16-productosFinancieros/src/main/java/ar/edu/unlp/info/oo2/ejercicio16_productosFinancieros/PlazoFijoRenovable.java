@@ -5,7 +5,7 @@ public class PlazoFijoRenovable extends ProductoFinanciero {
 	private int dias;
 	private double interes;
 
-	public PlazoFijoRenovable(int dias2, double interes2) {
+	public PlazoFijoRenovable(int dias, double interes) {
 		this.dias = dias;
 		this.interes = interes;
 	}

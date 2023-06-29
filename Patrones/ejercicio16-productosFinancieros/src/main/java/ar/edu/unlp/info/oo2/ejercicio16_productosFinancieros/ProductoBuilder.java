@@ -1,11 +1,11 @@
 package ar.edu.unlp.info.oo2.ejercicio16_productosFinancieros;
 
-public class ProductoBuilder extends Builder {
+public class ProductoBuilder implements Builder {
 	
 	private ProductoCombinado producto;
 	
-	public ProductoBuilder(ProductoCombinado p) {
-		this.producto = p;
+	public ProductoBuilder(ProductoCombinado producto) {
+		this.producto = producto;
 	}
 
 	@Override

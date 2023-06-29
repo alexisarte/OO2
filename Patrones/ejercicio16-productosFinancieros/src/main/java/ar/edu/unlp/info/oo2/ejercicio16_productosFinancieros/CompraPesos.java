@@ -2,10 +2,10 @@ package ar.edu.unlp.info.oo2.ejercicio16_productosFinancieros;
 
 public class CompraPesos extends ProductoFinanciero {
 
-	private double valorDeCambio;
+	private double valorCompra;
 
-	public CompraPesos(double valorDeCambio) {
-		this.valorDeCambio = valorDeCambio;
+	public CompraPesos(double valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 
 	@Override

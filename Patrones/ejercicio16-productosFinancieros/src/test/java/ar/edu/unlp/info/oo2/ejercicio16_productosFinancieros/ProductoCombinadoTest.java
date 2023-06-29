@@ -7,23 +7,21 @@ import org.junit.jupiter.api.Test;
 
 class ProductoCombinadoTest {
 	
-	Builder b;
-	ProductoCombinado p;
+	Builder productoBuilder;
+	Director director;
+	ProductoCombinado productoCombinado;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		p = new ProductoCombinado();
-		b = new ProductoBuilder(p);
-		
-		b.construirCompraDolares(0);
-		b.construirCompraPesos(0);
-		
-		p = b.getProductoCombinado();
+		this.productoCombinado = new ProductoCombinado();
+		this.productoBuilder = new ProductoBuilder(this.productoCombinado);
+		this.director = new Director();
+		this.director.construirPaqueteInversionDolarPeso(this.productoBuilder);
 	}
 
 	@Test
 	void testGanancia() {
-		fail("Not yet implemented");
+		
 	}
 
 }
