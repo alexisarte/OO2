@@ -43,7 +43,7 @@ public class NullMamifero extends Mamifero {
 	@Override
 	public Mamifero getPadre() {
 		// TODO Auto-generated method stub
-		return null;
+		return new NullMamifero();
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class NullMamifero extends Mamifero {
 	@Override
 	public Mamifero getMadre() {
 		// TODO Auto-generated method stub
-		return null;
+		return new NullMamifero();
 	}
 
 	@Override

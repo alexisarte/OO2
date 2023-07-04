@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MamiferoTest {
@@ -29,7 +28,7 @@ public class MamiferoTest {
 		alexa = new RealMamifero("Alexa");
 		elsa = new RealMamifero("Elsa");
 		scar = new RealMamifero("Scar");
-		sarabi = new RealMamifero("Sarabi");
+		sarabi = new RealMamifero();
 		anonimo = new RealMamifero();
 
 		alexa.setPadre(mufasa);
@@ -44,32 +43,30 @@ public class MamiferoTest {
 	@Test
 	void testAbuelaMaterna() {
 		assertEquals(elsa, alexa.getAbuelaMaterna());
-		assertNull(sarabi.getAbuelaMaterna());
-		assertNull(elsa.getAbuelaMaterna());
+		assertTrue(sarabi.getAbuelaMaterna() instanceof NullMamifero);
+		assertTrue(elsa.getAbuelaMaterna() instanceof NullMamifero);
 	}
 
 	@Test
 	void testAbuelaPaterna() {
 		assertEquals(nala, alexa.getAbuelaPaterna());
-		assertNull(mufasa.getAbuelaPaterna());
-		assertNull(nala.getAbuelaPaterna());
+		assertTrue(mufasa.getAbuelaPaterna() instanceof NullMamifero);
+		assertTrue(nala.getAbuelaPaterna() instanceof NullMamifero);
 
 	}
 
 	@Test
 	void testAbueloMaterno() {
 		assertEquals(scar, alexa.getAbueloMaterno());
-		assertNull(sarabi.getAbueloMaterno());
-		assertNull(scar.getAbueloMaterno());
-
+		assertTrue(sarabi.getAbueloMaterno() instanceof NullMamifero);
+		assertTrue(scar.getAbueloMaterno() instanceof NullMamifero);
 	}
 
 	@Test
 	void testAbueloPaterno() {
 		assertEquals(melquiades, alexa.getAbueloPaterno());
-		assertNull(mufasa.getAbueloPaterno());
-		assertNull(melquiades.getAbueloPaterno());
-
+		assertTrue(mufasa.getAbueloPaterno() instanceof NullMamifero);
+		assertTrue(melquiades.getAbueloPaterno() instanceof NullMamifero);
 	}
 
 	@Test
@@ -88,14 +85,14 @@ public class MamiferoTest {
 	void testMadre() {
 		anonimo.setMadre(alexa);
 		assertEquals(alexa, anonimo.getMadre());
-		assertNull(nala.getMadre());
+		assertTrue(nala.getMadre() instanceof NullMamifero);
 	}
 
 	@Test
 	void testPadre() {
 		anonimo.setPadre(mufasa);
 		assertEquals(mufasa, anonimo.getPadre());
-		assertNull(nala.getPadre());
+		assertTrue(nala.getPadre() instanceof NullMamifero);
 	}
 
 	@Test
